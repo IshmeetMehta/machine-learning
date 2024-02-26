@@ -1,0 +1,7 @@
+Flask==	3.0.1
+Flask-Cors==3.0.10
+langchain==0.1.8
+llama-index
+pypdf==4.0.1
+google-generativeai
+llama-index-llms-gemini
