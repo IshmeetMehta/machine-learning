@@ -36,23 +36,27 @@ def get_hf_api_key():
 get_gemini_api_key()
 nest_asyncio.apply()
 
+#GOOGLE_API_KEY=""  # add your GOOGLE API key here
+#GEMINI_API_KEY=""  # add your GEMINI API key here
+#os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
+#os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
+
 # Initialize provider class
 from trulens_eval.feedback.provider.litellm import LiteLLM
 
 litellm = LiteLLM(model_engine="gemini-pro")
 
-os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
 
 # # Initialize groundedness class
 grounded = Groundedness(groundedness_provider=litellm)
 
 qa_relevance = (
-    Feedback(litellm_provider.relevance_with_cot_reasons, name="Answer Relevance")
+    Feedback(litellm.relevance_with_cot_reasons, name="Answer Relevance")
     .on_input_output()
 )
 
 qs_relevance = (
-    Feedback(litellm_provider.relevance_with_cot_reasons, name = "Context Relevance")
+    Feedback(litellm.relevance_with_cot_reasons, name = "Context Relevance")
     .on_input()
     .on(TruLlama.select_source_nodes().node.text)
     .aggregate(np.mean)

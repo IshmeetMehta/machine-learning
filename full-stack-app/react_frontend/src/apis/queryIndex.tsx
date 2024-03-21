@@ -21,7 +21,7 @@ const queryIndex = async (query: string): Promise<QueryResponse> => {
   }
 
   const queryResponse = (await response.json()) as QueryResponse;
-
+  console.log(queryResponse);
   return queryResponse;
 };
 

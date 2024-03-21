@@ -11,4 +11,6 @@ sleep 60
 python3 ./flask_demo.py &
 
 # assumes you've ran npm install already (dockerfile does this during build)
-cd react_frontend && npm run build && npm install -g serve -s build
+#cd react_frontend && npm run build && npm install -g serve -s build
+#cd react_frontend && npm install && npm install -g serve && cd .. 
+cd react_frontend && npm run build && serve -s build

@@ -34,9 +34,10 @@ pkl_name = "stored_documents.pkl"
 def initialize_index():
     """Create a new global index, or load one from the pre-set path."""
     global index, stored_docs
+    storage_context = StorageContext.from_defaults()
     
-    storage_context = StorageContext.from_defaults(persist_dir=index_dir)
     if os.path.exists(index_dir):
+        storage_context = StorageContext.from_defaults(persist_dir=index_dir)
         index = load_index_from_storage(storage_context)
     else:
         documents = SimpleDirectoryReader("./documents").load_data()

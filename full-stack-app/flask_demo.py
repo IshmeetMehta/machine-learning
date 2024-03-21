@@ -25,7 +25,8 @@ def query_index():
             400,
         )
     response = manager.query_index(query_text)._getvalue()
-    return str(response), 200
+    # return str(response), 
+    return make_response(jsonify(response)), 200
 
 
 @app.route("/uploadFile", methods=["POST"])
